@@ -1,13 +1,17 @@
-import { useState } from 'react'
-
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
-  return(
-    <div>
-    
-    </div>
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
-export default App
+export default App;
