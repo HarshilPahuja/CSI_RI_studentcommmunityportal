@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 import AnnouncementButton from '../components/AnnouncementButton';
@@ -7,7 +6,6 @@ import NewAnnouncementModal from '../components/NewAnnouncementModal';
 import { useClubData } from '../components/ClubDataProvider';
 
 function AdminDashboard() {
-  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   
   // Fetch club data
@@ -15,17 +13,6 @@ function AdminDashboard() {
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
-
-  // Check if user is logged in
-  React.useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    const userType = localStorage.getItem('userType');
-    
-    if (!userId || userType !== 'admin') {
-      // Redirect to login if not authenticated as admin
-      navigate('/');
-    }
-  }, [navigate]);
 
   // Loading state
   if (loading) {
