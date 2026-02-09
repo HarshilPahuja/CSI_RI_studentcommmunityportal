@@ -19,7 +19,7 @@ export const useClubData = () => {
 
       try {
         // API call to fetch club data
-        const response = await fetch('https://localhost:3000/clubdetails', {
+        const response = await fetch('http://localhost:3000/clubdetails', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

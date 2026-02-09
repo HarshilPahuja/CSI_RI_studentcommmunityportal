@@ -26,7 +26,7 @@ function LoginForm() {
 
     try {
       // API call for student login
-      const response = await fetch('https://localhost:3000/login', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function LoginForm() {
 
     try {
       // API call for admin login
-      const response = await fetch('https://localhost:3000/admin', {
+      const response = await fetch('http://localhost:3000/admin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ function LoginForm() {
 
     try {
       // API call for signup
-      const response = await fetch('https://localhost:3000/signup', {
+      const response = await fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +150,8 @@ function LoginForm() {
 
       if (response.ok && data.success) {
         // Signup successful
-        localStorage.setItem('userId', data.id);
+        localStorage.setItem('userId', data.userId);
+
         localStorage.setItem('userType', 'student');
         
         console.log('Signup successful! User ID:', data.id);
