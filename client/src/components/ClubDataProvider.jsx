@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// Custom hook to fetch club data
 export const useClubData = () => {
   const [clubData, setClubData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -8,24 +7,23 @@ export const useClubData = () => {
 
   useEffect(() => {
     const fetchClubData = async () => {
-      // Get userId from localStorage
-      const userId = localStorage.getItem('userId');
-      
-      if (!userId) {
-        setError('No user ID found. Please login again.');
+
+      const clubName = localStorage.getItem('club_name');
+
+      if (!clubName) {
+        setError('No club found. Please login again.');
         setLoading(false);
         return;
       }
 
       try {
-        // API call to fetch club data
         const response = await fetch('http://localhost:3000/clubdetails', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userId: userId,
+            club_name: clubName,
           }),
         });
 
@@ -35,7 +33,7 @@ export const useClubData = () => {
           setClubData({
             name: data.clubName,
             description: data.clubDescription,
-            bannerImage: data.bannerImage, 
+            bannerImage: data.bannerImage,
           });
         } else {
           setError(data.message || 'Failed to fetch club data');
@@ -49,7 +47,7 @@ export const useClubData = () => {
     };
 
     fetchClubData();
-  }, []); 
+  }, []);
 
   return { clubData, loading, error };
 };

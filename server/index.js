@@ -163,14 +163,20 @@ app.post('/clubdetails', async (req, res) => {
   const { data, error } = await supabase
     .from('Clubs')
     .select('*')
-    .eq('clubname', club_name)
+    .eq('club_name', club_name)
 
   if (error || data.length === 0) {
     return res.json({ success: false })
   }
 
-  res.json(data[0])
+  res.json({
+    success: true,
+    clubName: data[0].club_name,
+    clubDescription: data[0].about,
+    bannerImage: data[0].banner_image_url
+  })
 })
+
 
 // ================================
 // 12. START SERVER

@@ -103,7 +103,8 @@ function LoginForm() {
         localStorage.setItem('userType', 'admin');
         
         // Navigate to admin dashboard
-        console.log('Admin login successful! User ID:', data.userId);
+         localStorage.setItem('club_name', data.club_name);   // IMPORTANT
+
         navigate('/admin');
         
       } else {
