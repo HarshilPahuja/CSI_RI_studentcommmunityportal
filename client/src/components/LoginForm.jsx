@@ -44,9 +44,8 @@ function LoginForm() {
         localStorage.setItem('userId', data.userId);
         localStorage.setItem('userType', 'student');
         
-        // Navigate to student dashboard (you'll create this later)
-        console.log('Student login successful! User ID:', data.userId);
-        // navigate('/student-dashboard'); // Uncomment when you create student dashboard
+        
+        navigate("/dashboard"); 
         
       } else {
         // Show error message from backend
@@ -154,13 +153,14 @@ function LoginForm() {
 
         localStorage.setItem('userType', 'student');
         
-        console.log('Signup successful! User ID:', data.id);
+        
         
         // Show success message
         alert('Account created successfully!');
         
         // redirect to student dashboard once component is ready
-        
+        navigate("/dashboard");
+
       } else {
         // Signup failed
         setError(data.message || 'Signup failed. Username might already exist.');
