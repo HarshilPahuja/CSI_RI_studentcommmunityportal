@@ -1,9 +1,14 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ClubGrid from "../DiscoverClubs/components/ClubGrid";
+import NotificationsPanel from "../../components/NotificationsPanel";
+import { io } from "socket.io-client";
 
 const MyClubsPage = () => {
   const [interestedClubs, setInterestedClubs] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+  const [notificationsLoading, setNotificationsLoading] = useState(false);
+  const [notificationsError, setNotificationsError] = useState("");
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -20,6 +25,93 @@ const MyClubsPage = () => {
 
     setInterestedClubs(parsed);
   }, []);
+
+  const clubNames = useMemo(() => {
+    if (!interestedClubs) return [];
+    return interestedClubs
+      .map((club) => club?.name)
+      .filter(Boolean);
+  }, [interestedClubs]);
+
+  const isNotificationActive = (notification) => {
+    if (!notification?.valid_till) return true;
+    return new Date(notification.valid_till) > new Date();
+  };
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      if (!clubNames.length) {
+        setNotifications([]);
+        setNotificationsLoading(false);
+        return;
+      }
+
+      setNotificationsLoading(true);
+      setNotificationsError("");
+
+      try {
+        const response = await fetch(
+          "http://localhost:3000/notifications/list",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ clubs: clubNames }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Unable to load notifications");
+        }
+
+        const activeNotifications = (data.notifications || []).filter(
+          isNotificationActive
+        );
+
+        setNotifications(activeNotifications);
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+        setNotificationsError(
+          error?.message || "Unable to load notifications"
+        );
+      } finally {
+        setNotificationsLoading(false);
+      }
+    };
+
+    if (interestedClubs !== null) {
+      fetchNotifications();
+    }
+  }, [clubNames, interestedClubs]);
+
+  useEffect(() => {
+    if (!clubNames.length) return;
+
+    const socket = io("http://localhost:3000");
+
+    socket.on("connect", () => {
+      socket.emit("join_clubs", clubNames);
+    });
+
+    socket.on("notification:new", (notification) => {
+      if (!isNotificationActive(notification)) return;
+
+      setNotifications((prev) => {
+        if (prev.some((item) => item.id === notification.id)) {
+          return prev;
+        }
+
+        return [notification, ...prev];
+      });
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [clubNames]);
 
   //  Loading state
   if (interestedClubs === null) {
@@ -41,13 +133,19 @@ const MyClubsPage = () => {
 
   //  Render interested clubs 
   return (
-    <ClubGrid
-      clubs={interestedClubs}
-      followedClubs={interestedClubs}
-      toggleFollow={() => {}}
-    />
+    <>
+      <NotificationsPanel
+        notifications={notifications}
+        loading={notificationsLoading}
+        error={notificationsError}
+      />
+      <ClubGrid
+        clubs={interestedClubs}
+        followedClubs={interestedClubs}
+        toggleFollow={() => {}}
+      />
+    </>
   );
 };
 
 export default MyClubsPage;
-
