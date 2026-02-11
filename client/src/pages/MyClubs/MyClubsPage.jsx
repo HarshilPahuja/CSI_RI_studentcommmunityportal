@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import ClubGrid from "../DiscoverClubs/components/ClubGrid";
+import React, { useEffect, useState, useMemo } from "react";
 
 const MyClubsPage = () => {
   const [interestedClubs, setInterestedClubs] = useState(null);
@@ -20,6 +19,11 @@ const MyClubsPage = () => {
     setInterestedClubs(parsed);
   }, []);
 
+  const followedCount = useMemo(() => {
+    if (!interestedClubs) return 0;
+    return interestedClubs.length;
+  }, [interestedClubs]);
+
   //  Loading state
   if (interestedClubs === null) {
     return (
@@ -29,22 +33,14 @@ const MyClubsPage = () => {
     );
   }
 
-  //  Empty state
-  if (interestedClubs.length === 0) {
-    return (
-      <div className="px-8 py-12 text-center text-gray-400">
-        You haven’t followed any clubs yet.
-      </div>
-    );
-  }
-
-  //  Render interested clubs
   return (
-    <ClubGrid
-      clubs={interestedClubs}
-      followedClubs={interestedClubs}
-      toggleFollow={() => {}}
-    />
+    <div className="px-8 py-12 text-center text-gray-500">
+      <p className="text-lg font-medium">Interested clubs view is now moved to notifications.</p>
+      <p className="mt-2 text-sm text-gray-400">
+        Use the bell icon in the header to see all club announcements.
+      </p>
+      <p className="mt-4 text-sm text-gray-400">You are following {followedCount} club(s).</p>
+    </div>
   );
 };
 
