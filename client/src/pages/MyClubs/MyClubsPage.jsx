@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import ClubGrid from "../DiscoverClubs/components/ClubGrid";
 
 const MyClubsPage = () => {
@@ -21,6 +20,11 @@ const MyClubsPage = () => {
     setInterestedClubs(parsed);
   }, []);
 
+  const followedClubs = useMemo(() => {
+    if (!interestedClubs) return [];
+    return interestedClubs;
+  }, [interestedClubs]);
+
   //  Loading state
   if (interestedClubs === null) {
     return (
@@ -31,7 +35,7 @@ const MyClubsPage = () => {
   }
 
   //  Empty state
-  if (interestedClubs.length === 0) {
+  if (followedClubs.length === 0) {
     return (
       <div className="px-8 py-12 text-center text-gray-400">
         You haven’t followed any clubs yet.
@@ -39,15 +43,14 @@ const MyClubsPage = () => {
     );
   }
 
-  //  Render interested clubs 
+  //  Render interested clubs only (notifications are in bell)
   return (
     <ClubGrid
-      clubs={interestedClubs}
-      followedClubs={interestedClubs}
+      clubs={followedClubs}
+      followedClubs={followedClubs}
       toggleFollow={() => {}}
     />
   );
 };
 
 export default MyClubsPage;
-
