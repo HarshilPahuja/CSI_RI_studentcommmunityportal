@@ -123,13 +123,15 @@ const MyClubsPage = () => {
   }
 
   //  Empty state
-  if (followedClubs.length === 0) {
-    return (
-      <div className="px-8 py-12 text-center text-gray-400">
-        You haven’t followed any clubs yet.
-      </div>
-    );
-  }
+  // Empty state
+if (interestedClubs.length === 0) {
+  return (
+    <div className="px-8 py-12 text-center text-gray-400">
+      You haven’t followed any clubs yet.
+    </div>
+  );
+}
+
 
   //  Render interested clubs only (notifications are in bell)
   return (
