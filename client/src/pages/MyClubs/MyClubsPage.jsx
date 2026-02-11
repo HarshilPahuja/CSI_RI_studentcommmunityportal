@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import ClubGrid from "../DiscoverClubs/components/ClubGrid";
 
@@ -39,7 +38,7 @@ const MyClubsPage = () => {
     );
   }
 
-  //  Render interested clubs 
+  //  Render interested clubs
   return (
     <ClubGrid
       clubs={interestedClubs}
@@ -50,4 +49,3 @@ const MyClubsPage = () => {
 };
 
 export default MyClubsPage;
-
