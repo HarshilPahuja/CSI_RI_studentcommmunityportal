@@ -17,7 +17,7 @@ export const useClubData = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/clubdetails', {
+        const response = await fetch('https://csi-ri-studentcommmunityportal.onrender.com/clubdetails', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
