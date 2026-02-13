@@ -26,7 +26,7 @@ function LoginForm() {
 
     try {
       // API call for student login
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('https://csi-ri-studentcommmunityportal.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function LoginForm() {
 
     try {
       // API call for admin login
-      const response = await fetch('http://localhost:3000/admin', {
+      const response = await fetch('https://csi-ri-studentcommmunityportal.onrender.com/admin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ function LoginForm() {
 
     try {
       // API call for signup
-      const response = await fetch('http://localhost:3000/signup', {
+      const response = await fetch('https://csi-ri-studentcommmunityportal.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

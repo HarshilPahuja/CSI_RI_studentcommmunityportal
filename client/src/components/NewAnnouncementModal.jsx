@@ -35,7 +35,7 @@ function NewAnnouncementModal({ isOpen, onClose }) {
     setPublishing(true);
 
     try {
-      const response = await fetch('http://localhost:3000/notifications/publish', {
+      const response = await fetch('https://csi-ri-studentcommmunityportal.onrender.com/notifications/publish', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
