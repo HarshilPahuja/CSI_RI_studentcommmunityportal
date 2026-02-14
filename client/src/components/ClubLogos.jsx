@@ -1,5 +1,14 @@
 import React from 'react';
 
+import SquadUp from '../assets/clublogos/SquadUp.png';
+import Cosmos from '../assets/clublogos/Cosmos.png';
+import VegapodHyperloop from '../assets/clublogos/VegapodHyperloop.png';
+import InnovationHub from '../assets/clublogos/InnovationHub.png';
+import Chalchitra from '../assets/clublogos/Chalchitra.png';
+import CSI from '../assets/clublogos/CSI.png';
+import TheRock from '../assets/clublogos/TheRock.png';
+import Tedx from '../assets/clublogos/Tedx.png';
+
 function ClubLogos() {
   return (
     <div className="flex flex-col items-center justify-center space-y-6 -mt-16">
@@ -7,15 +16,15 @@ function ClubLogos() {
       <div className="flex items-center justify-center gap-6 -ml-32">
         <div className=" flex items-center justify-center">
           <img 
-            src="src\assets\clublogos\SquadUp.png" 
-            alt="Squad Up" 
+            src={SquadUp} 
+            alt="SquadUp" 
             className="max-w-full max-h-full object-contain"
           />
         </div>
         <div className="max-w-full max-h-full flex items-center justify-center">
           <img 
-            src="src\assets\clublogos\Cosmos.png" 
-            alt="Club 2" 
+            src={Cosmos}
+            alt="Cosmos" 
             className="max-w-full max-h-full object-contain"
           />
         </div>
@@ -25,15 +34,15 @@ function ClubLogos() {
       <div className="flex items-center justify-center gap-6 ml-32">
         <div className="max-w-full max-h-full flex items-center justify-center">
           <img 
-            src="src\assets\clublogos\VegapodHyperloop.png" 
-            alt="Club 3" 
+            src={VegapodHyperloop}
+            alt="VegapodHyperloop" 
             className="max-w-full max-h-full object-contain"
           />
         </div>
         <div className="max-w-full max-h-full flex items-center justify-center">
           <img 
-            src="src\assets\clublogos\InnovationHub.png" 
-            alt="Club 4" 
+            src={InnovationHub}
+            alt="InnovationHub" 
             className="max-w-full max-h-full object-contain"
           />
         </div>
@@ -43,15 +52,15 @@ function ClubLogos() {
       <div className="flex items-center justify-center gap-6 -ml-32">
         <div className="max-w-full max-h-full flex items-center justify-center">
           <img 
-            src="src\assets\clublogos\Chalchitra.png" 
-            alt="Club 5" 
+            src={Chalchitra} 
+            alt="Chalchitra" 
             className="max-w-full max-h-full object-contain"
           />
         </div>
         <div className="max-w-full max-h-full flex items-center justify-center">
           <img 
-            src="src\assets\clublogos\CSI.png" 
-            alt="Club 6" 
+            src={CSI}
+            alt="CSI" 
             className="max-w-full max-h-full object-contain"
           />
         </div>
@@ -61,15 +70,15 @@ function ClubLogos() {
       <div className="flex items-center justify-center gap-6 ml-32">
         <div className="max-w-full max-h-full flex items-center justify-center">
           <img 
-            src="src\assets\clublogos\TheRock.png" 
-            alt="Club 5" 
+            src={TheRock}
+            alt="TheRock" 
             className="max-w-full max-h-full object-contain"
           />
         </div>
         <div className="max-w-full max-h-full flex items-center justify-center">
           <img 
-            src="src\assets\clublogos\Tedx.png" 
-            alt="Club 7" 
+            src={Tedx} 
+            alt="Tedx" 
             className="max-w-full max-h-full object-contain"
           />
         </div>
