@@ -53,7 +53,7 @@ const Dashboard = () => {
       setNotificationsError("");
 
       try {
-        const response = await fetch("http://localhost:3000/notifications/list", {
+        const response = await fetch("https://csi-ri-studentcommmunityportal.onrender.com/notifications/list", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (!clubNames.length) return;
 
-    const socket = io("http://localhost:3000");
+    const socket = io("https://csi-ri-studentcommmunityportal.onrender.com");
 
     socket.on("connect", () => {
       socket.emit("join_clubs", clubNames);
