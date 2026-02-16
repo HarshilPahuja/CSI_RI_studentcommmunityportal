@@ -18,7 +18,7 @@
 //       setLoading(true);
 
 //       try {
-//         let url = "http://localhost:3000/clubs";
+//         let url = "https://csi-ri-studentcommmunityportal.onrender.com/clubs";
 
 //         if (activeCategory && activeCategory !== "All") {
 //           url += `?category=${activeCategory.toLowerCase()}`;
@@ -115,7 +115,7 @@ const DiscoverClubsContainer = ({ activeCategory, search }) => {
       setLoading(true);
 
       try {
-        let url = "http://localhost:3000/clubs";
+        let url = "https://csi-ri-studentcommmunityportal.onrender.com/clubs";
 
         if (activeCategory && activeCategory !== "All") {
           url += `?category=${activeCategory.toLowerCase()}`;

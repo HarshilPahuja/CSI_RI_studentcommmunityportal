@@ -51,7 +51,7 @@ const MyClubsPage = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:3000/notifications/list",
+          "https://csi-ri-studentcommmunityportal.onrender.com/notifications/list",
           {
             method: "POST",
             headers: {
@@ -90,7 +90,7 @@ const MyClubsPage = () => {
   useEffect(() => {
     if (!clubNames.length) return;
 
-    const socket = io("http://localhost:3000");
+    const socket = io("https://csi-ri-studentcommmunityportal.onrender.com");
 
     socket.on("connect", () => {
       socket.emit("join_clubs", clubNames);
